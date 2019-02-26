@@ -14,7 +14,7 @@ RUN apk add git
 WORKDIR /go/src/
 RUN git clone https://github.com/nori007/istio-test.git
 
-WORKDIR /go/src/go-server-2
+WORKDIR /go/src/istio-test/go-server-2
 ENV GO111MODULE=on
 RUN go mod download
 RUN go build
