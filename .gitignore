@@ -1,0 +1,30 @@
+### VisualStudioCode ###
+.vscode/*
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+
+### Goland ###
+.idea/*
+
+### Go ###
+*.exe
+*.exe~
+
+### Etc ###
+debug
+*.log
+*.test
+*.out
+
+### custom ###
+logs/*.idea/*
+
+
+### mac ###
+.DS_Store
+
+
+### project ###
+go-temp-server

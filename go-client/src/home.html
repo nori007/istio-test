@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>React</title>
+  <script>
+    var USER = 'testuser';
+    var TEMPSERVERURL = "/tempserver";
+
+    window.onload = function () {
+      // url 에서 파싱????????????????
+      // user = USER
+      //
+      // token = window.localStorage.getItem(user)
+      // if (isToken(token)) {
+      //   // 정상처리.
+      //   updateViewTest('service start')
+      // } else {
+      //   updateViewTest('토큰없음');
+      //   updateViewTest('3초뒤 로그인 페이지로!');
+      //    setTimeout(function () {
+      //     window.location.href = "/login"
+      //   }, 3000);
+      //
+      //   //clearTimeout()
+      //
+      // }
+
+      user = USER;
+      token = window.localStorage.getItem(user);
+      if(isToken(token)) {
+        updateViewTest('post message url: ' + TEMPSERVERURL + "/api")
+        updateViewTest('post message data: ' + token);
+        sendAjax(JSON.parse(token), TEMPSERVERURL + "/api", function (res) {
+          updateViewTest('success: ' + res);
+          updateViewTest('service start')
+        })
+      }else {
+        updateViewTest('로컬스토리지에 토큰없음');
+          updateViewTest('3초뒤 로그인 페이지로!');
+           setTimeout(function () {
+            window.location.href = "/login"
+          }, 3000);
+      }
+    };
+
+    function sendAjax(data, targetURL, callback) {
+      xhr = new XMLHttpRequest();
+
+      // xhr.open('POST', 'http://127.0.0.1:6800/file/upload');
+      xhr.open('POST', targetURL);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          callback(xhr.responseText);
+        }
+        else if(xhr.status === 401) {
+          updateViewTest('로컬스토리지에 토큰없음');
+          updateViewTest('3초뒤 로그인 페이지로!');
+          setTimeout(function () {
+            window.location.href = "/login"
+          }, 3000);
+        }
+        else {
+          alert('error: ' + xhr.responseText);
+        }
+      };
+      xhr.send(data);
+    }
+
+    function isToken(token) {
+      // 토큰이 유효한지는...?
+      if (token == null || typeof token === 'undefined' || token == ''){
+        return false;
+      }else {
+        return true
+      }
+    }
+
+    function updateViewTest(str) {
+      view = document.getElementById("view");
+      view.innerHTML = view.innerHTML + "<br>&gt;&gt; " + str;
+    }
+
+    function logoutEvent() {
+      updateViewTest('logout');
+      window.localStorage.removeItem(user)
+      setTimeout(function () {
+        window.location.href = "/home"
+      }, 3000);
+    }
+  </script>
+</head>
+
+<body>
+  <h1>HONE</h1>
+  <div id="app"></div>
+  <script src="bundle.js"></script>
+  <input onclick="logoutEvent()" type="button" value="logout" style="width:200px;font-size:20px">
+  <br>
+  <div id="view">
+
+  </div>
+</body>
+
+</html>
