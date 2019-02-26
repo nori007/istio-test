@@ -7,9 +7,9 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/api", func(w http.ResponseWriter, req *http.Request){
+	http.HandleFunc("/auth", func(w http.ResponseWriter, req *http.Request){
 		//req.data..... token check?
-		fmt.Println("temp server")
+		fmt.Println("auth start")
 		respBody, err := ioutil.ReadAll(req.Body)
 		if err == nil {
 			str := string(respBody)
@@ -22,5 +22,5 @@ func main() {
 		w.Write([]byte("ok"))
 	})
 
-	http.ListenAndServe(":9998", nil)
+	http.ListenAndServe(":9992", nil)
 }

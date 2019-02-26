@@ -9,21 +9,22 @@
 <script>
   var TESTUSER = 'testuser';
   var TESTPASSWORD = "testpassword";
-  var JWTURL = "/jwt";
+  var JWTURL = "";
 
   function getJWTToken() {
-    updateViewTest('button click!')
+    updateViewTest('button click!');
 
     var formData = new FormData();
     formData.append("name", TESTUSER);
     formData.append("name", TESTPASSWORD);
 
-    updateViewTest('post message url: ' + JWTURL + "/login")
-    updateViewTest('post message data: ' + formData)
-    sendAjax(formData, JWTURL + "/login", function (token) {
-      updateViewTest('success: ' + token)
+    updateViewTest('post message url: ' + JWTURL + "/auth");
+    updateViewTest('post message data: ' + formData);
+    sendAjax(formData, JWTURL + "/auth", function (token) {
+      token = JSON.stringify({"token": token});
+      updateViewTest('success: ' + token);
 
-      updateViewTest('localstorage setItem: ' + TESTUSER + "//" + token)
+      updateViewTest('localstorage setItem: ' + TESTUSER + "//" + token);
       window.localStorage.setItem(TESTUSER, token);
       updateViewTest('home.html redirect');
       setTimeout(function(){

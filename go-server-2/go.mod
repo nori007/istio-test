@@ -1,1 +1,1 @@
-module go-temp-server
+module go-server-2

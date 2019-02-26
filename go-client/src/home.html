@@ -6,7 +6,7 @@
   <title>React</title>
   <script>
     var USER = 'testuser';
-    var TEMPSERVERURL = "/tempserver";
+    var TEMPSERVERURL = "";
 
     window.onload = function () {
       // url 에서 파싱????????????????
@@ -40,7 +40,7 @@
         updateViewTest('로컬스토리지에 토큰없음');
           updateViewTest('3초뒤 로그인 페이지로!');
            setTimeout(function () {
-            window.location.href = "/login"
+            window.location.href = "/login.html"
           }, 3000);
       }
     };
@@ -95,7 +95,6 @@
 <body>
   <h1>HONE</h1>
   <div id="app"></div>
-  <script src="bundle.js"></script>
   <input onclick="logoutEvent()" type="button" value="logout" style="width:200px;font-size:20px">
   <br>
   <div id="view">
