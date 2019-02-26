@@ -10,7 +10,7 @@ func main() {
 	fs := http.FileServer(http.Dir("src"))
 	http.Handle("/", fs)
 	http.HandleFunc("/auth", func(w http.ResponseWriter, req *http.Request){
-		newreq, _ := http.NewRequest("POST", "http://go-server-1:9992/go-server-1/auth", req.Body)
+		newreq, _ := http.NewRequest("POST", "http://go-server-1:9992/go-server-1/", req.Body)
 		//newreq, _ := http.NewRequest("POST", "http://127.0.0.1:9992/auth", req.Body)
 		client := &http.Client{}
 		resp, err := client.Do(newreq)
@@ -26,7 +26,7 @@ func main() {
 		w.Write(body)
 	})
 	http.HandleFunc("/api", func(w http.ResponseWriter, req *http.Request){
-		newreq, _ := http.NewRequest("POST", "http://go-server-2:9993/go-server-2/api", req.Body)
+		newreq, _ := http.NewRequest("POST", "http://go-server-2:9993/go-server-2/", req.Body)
 		//newreq, _ := http.NewRequest("POST", "http://127.0.0.1:9993/api", req.Body)
 		client := &http.Client{}
 		resp, err := client.Do(newreq)

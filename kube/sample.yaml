@@ -14,18 +14,18 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: go-client-v1
+  name: go-client-v3
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         app: go-client
-        version: v1
+        version: v3
     spec:
       containers:
         - name: go-client
-          image: nori007/istio-test.go-client:v1
+          image: nori007/istio-test.go-client:v3
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9991
@@ -46,18 +46,18 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: go-server-1-v1
+  name: go-server-1-v2
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         app: go-server-1
-        version: v1
+        version: v2
     spec:
       containers:
         - name: go-server-1
-          image: nori007/istio-test.go-server-1:v1
+          image: nori007/istio-test.go-server-1:v2
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9992
@@ -78,18 +78,18 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: go-server-2-v1
+  name: go-server-2-v2
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         app: go-server-2
-        version: v1
+        version: v2
     spec:
       containers:
         - name: go-server-2
-          image: nori007/istio-test.go-server-2:v1
+          image: nori007/istio-test.go-server-2:v2
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9993

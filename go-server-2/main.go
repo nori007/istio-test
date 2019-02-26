@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/api", func(w http.ResponseWriter, req *http.Request){
+	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request){
 		//req.data..... token check?
 		fmt.Println("api start")
 		respBody, err := ioutil.ReadAll(req.Body)

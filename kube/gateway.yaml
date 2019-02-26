@@ -25,13 +25,11 @@ spec:
   http:
   - match:
     - uri:
-        exact: /home
+        exact: /
     - uri:
-        exact: /login
+        prefix: /auth
     - uri:
-        exact: /logout
-    - uri:
-        prefix: /api/v1/products
+        prefix: /api
     route:
     - destination:
         host: go-client
