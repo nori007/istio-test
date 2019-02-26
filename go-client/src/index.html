@@ -9,27 +9,22 @@
 <script>
   var TESTUSER = 'testuser';
   var TESTPASSWORD = "testpassword";
-  var JWTURL = "";
 
-  function getJWTToken() {
-    updateViewTest('button click!');
+  function server1() {
+    updateViewTest('server1 click!');
+    updateViewTest('post message url: /auth');
 
-    var formData = new FormData();
-    formData.append("name", TESTUSER);
-    formData.append("name", TESTPASSWORD);
+    sendAjax("", "/auth", function (res) {
+      updateViewTest('server1 success: ' + res);
+    })
+  }
 
-    updateViewTest('post message url: ' + JWTURL + "/auth");
-    updateViewTest('post message data: ' + formData);
-    sendAjax(formData, JWTURL + "/auth", function (token) {
-      token = JSON.stringify({"token": token});
-      updateViewTest('success: ' + token);
+  function server2() {
+    updateViewTest('server2 click!');
+    updateViewTest('post message url: /api');
 
-      updateViewTest('localstorage setItem: ' + TESTUSER + "//" + token);
-      window.localStorage.setItem(TESTUSER, token);
-      updateViewTest('home.html redirect');
-      setTimeout(function(){
-        window.location.href = "/home.html"
-      }, 3000);
+    sendAjax("", "/api", function (res) {
+      updateViewTest('server2 success: ' + res);
     })
   }
 
@@ -59,7 +54,8 @@
   <h1>react test</h1>
   <div id="app"></div>
   <!-- <script src="bundle.js"></script> -->
-  <input onclick="getJWTToken()" type="button" value="get jwt token" style="width:200px;font-size:20px">
+  <input onclick="server1()" type="button" value="server1" style="width:200px;font-size:20px">
+  <input onclick="server2()" type="button" value="server2" style="width:200px;font-size:20px">
   <br>
   <br>
   <div id="view">
