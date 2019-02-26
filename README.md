@@ -1,17 +1,18 @@
 # istio-test
 
 golang -> docker -> kubernetis -> istio 
-목적
+
+#목적
  - pubilc ip가 아닌 private ip로 동작하도록
    (결국은 서버사이드 렌더링 하면 될듯. 서버사이드 렌더링, 클라이언트 렌더링 차이점 확인 필요)
 
-기본 구성
+#기본 구성
  - 웹페이지를 보여주는 모듈 하나: potal-server
  - 인증 기능 모듈: auth-server
  - API 기능 모듈: api-server
 
 
-대략 흐름..
+#대략 흐름..
  1. 사용자는 potal-server의 웹페이지에 접근.
  2. potal-server는 auth-server로 인증 요청
     2-1. potal-server의 웹단은 potal-server의 백단으로 요청
